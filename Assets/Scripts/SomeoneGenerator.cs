@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class SomeoneGenerator : MonoBehaviour
 {
@@ -11,10 +12,13 @@ public class SomeoneGenerator : MonoBehaviour
     public void SetUp(SomeonePointer someonePointer)
     {
         someoneGene = someonePointer.someonePoints;
-        Debug.Log(someoneGene.Count);
-        for (int i = 0; i < someoneGene.Count; i++)
+        if (someoneGene != null)
         {
-            Instantiate(someonePrefab, new Vector2(someoneGene[i].Item1, someoneGene[i].Item2), Quaternion.identity);
+            Debug.Log(someoneGene.Count);
+            for (int i = 0; i < someoneGene.Count; i++)
+            {
+                Instantiate(someonePrefab, new Vector2(someoneGene[i].Item1, someoneGene[i].Item2), Quaternion.identity);
+            }
         }
     }
 }

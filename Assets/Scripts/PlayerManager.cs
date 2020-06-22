@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
 
 public class PlayerManager : MonoBehaviour
 {
-    PlayerController playerController;
+    //PlayerController playerController;
     SomeonePointer someonePointer;
     public GameObject player;
     public int HPValue = 100;
