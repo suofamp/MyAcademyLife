@@ -5,12 +5,28 @@ using UnityEngine.SceneManagement;
 
 public class ScenesManager : MonoBehaviour
 {
+    public string SceneName;
     public PlayerManager playerManager;
+    bool fadeInFlag = false;
+    bool dadeOutFlag = false;
+
+    private void Update()
+    {
+        
+    }
+
+    public void ChangeScene()
+    {
+        Debug.Log(playerManager.HPValue);
+        SceneManager.sceneLoaded += pathValue;
+        SceneManager.LoadScene(SceneName);
+    }
+
     private void OnCollisionEnter2D(Collision2D collision)
     {
         Debug.Log(playerManager.HPValue);
         SceneManager.sceneLoaded += pathValue;
-        SceneManager.LoadScene("NextArea");
+        SceneManager.LoadScene(SceneName);
     }
 
     void pathValue(Scene scene,LoadSceneMode mode)
