@@ -12,6 +12,7 @@ public class PlayerController : MonoBehaviour
     float SPEED = 3.0f;
     private Rigidbody2D rigidBody;
     private Vector2 inputAxis;
+    public bool canMove = false;
     void Start()
     {
         // オブジェクトに設定しているRigidbody2Dの参照を取得する
@@ -22,9 +23,12 @@ public class PlayerController : MonoBehaviour
     {
         // x,ｙの入力値を得る
         // それぞれ+や-の値と入力の関連付けはInput Managerで設定されている
-        inputAxis.x = Input.GetAxis("Horizontal");
-        inputAxis.y = Input.GetAxis("Vertical");
-        rigidBody.velocity = inputAxis.normalized * SPEED;
-        var currentPosi = this.transform.position.x;
+        if (canMove)
+        {
+            inputAxis.x = Input.GetAxis("Horizontal");
+            inputAxis.y = Input.GetAxis("Vertical");
+            rigidBody.velocity = inputAxis.normalized * SPEED;
+            var currentPosi = this.transform.position.x;
+        }
     }
 }

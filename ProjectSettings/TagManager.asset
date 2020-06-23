@@ -53,3 +53,9 @@ TagManager:
   - name: AreaWall
     uniqueID: 2407994027
     locked: 0
+  - name: UI
+    uniqueID: 1135068113
+    locked: 0
+  - name: Fade
+    uniqueID: 1631447081
+    locked: 0
