@@ -10,7 +10,6 @@ public class MovieController : MonoBehaviour
     public ScenesManager scenesManager;
     int HPValue;
     int aroundSomeone;
-    bool IsTextPush = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -23,20 +22,14 @@ public class MovieController : MonoBehaviour
         HPValue = playerManager.HPValue;
         //aroundSomeone = playerManager.distance(someonePointer);
         MoviePlayerUI.updateUI(HPValue);
-        if (Input.GetMouseButtonDown(0) && messageController.currentSentenceNum == 0)
+        if (scenesManager.c <= 0)
         {
-            scenesManager.ChangeScene();
+            messageController.TextStart();
+            if (messageController.textEndFlag)
+            {
+                scenesManager.fadeOutStart();
+            }
         }
-        if (Input.GetMouseButtonDown(0))
-        {
-            PushText();
-        }
-        messageController.TextUpdate(IsTextPush);
-        IsTextPush = false;
-    }
-
-    public void PushText()
-    {
-        this.IsTextPush = true;
+        //messageController.IsTextPush = false;
     }
 }

@@ -10,9 +10,10 @@ public class GameSystem : MonoBehaviour
     public PlayerUI playerUI;
     public PlayerManager playerManager;
     public MessageController messageController;
+    public ScenesManager scenesManager;
     int HPValue;
     int aroundSomeone;
-    bool IsTextPush = false;
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -27,17 +28,14 @@ public class GameSystem : MonoBehaviour
         aroundSomeone = playerManager.distance(someonePointer);
         playerUI.updateUI(HPValue , aroundSomeone);
         playerManager.Damage();
-        
-        if (Input.GetMouseButtonDown(0))
-        {
-            PushText();
-        }
-        messageController.TextUpdate(IsTextPush);
-        IsTextPush = false;
-    }
 
-    public void PushText()
-    {
-        this.IsTextPush = true;
+        if (scenesManager.c <= 0)
+        {
+            messageController.TextStart();
+        }
+        if (messageController.textEndFlag)
+        {
+            playerController.canMove = true;
+        }
     }
 }
