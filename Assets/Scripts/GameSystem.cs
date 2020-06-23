@@ -17,7 +17,7 @@ public class GameSystem : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        someoneGenerator.SetUp(someonePointer);
+        someoneGenerator.SetUp(someonePointer);//Someoneを生成
     }
 
     // Update is called once per frame
