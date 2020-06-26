@@ -33,7 +33,7 @@ public class GameSystem : MonoBehaviour
         {
             messageController.TextStart();
         }
-        if (messageController.textEndFlag)
+        if (messageController.textEndFlag && scenesManager.c <= 0)
         {
             playerController.canMove = true;
         }

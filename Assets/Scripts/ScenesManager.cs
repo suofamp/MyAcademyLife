@@ -24,7 +24,7 @@ public class ScenesManager : MonoBehaviour
         if (fadeInFlag)
         {
             c -= Time.deltaTime;
-            Debug.Log(c);
+            //Debug.Log(c);
             spriteRenderer.color = new Color(0, 0, 0, c);
         };
         if (c <= 0)
@@ -35,7 +35,7 @@ public class ScenesManager : MonoBehaviour
         if (fadeOutFlag)
         {
             c += Time.deltaTime;
-            Debug.Log(c);
+            //Debug.Log(c);
             spriteRenderer.color = new Color(0, 0, 0, c);
         };
         if(c >= 1)
