@@ -40,4 +40,9 @@ public class SomeoneMovingController : MonoBehaviour
         someoneTransform.position = posi;
         //Debug.Log(xPosi + " " + yPosi);
     }
+
+    void Turning()
+    {
+
+    }
 }
