@@ -31,11 +31,15 @@ public class MessageController : MonoBehaviour
 
     public void TextStart()
     {
-        if (!textStartFlag)
+        if (!textStartFlag && sentences.Length > 0)
         {
             MessageCanvas.SetActive(true);
             textStartFlag = true;
             SetNextSentence();
+        }
+        else
+        {
+            TextEnd();
         }
     }
 
