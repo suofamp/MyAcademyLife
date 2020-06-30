@@ -56,9 +56,9 @@ public class IntersectionController : MonoBehaviour
             //Debug.Log(arrowedDirection[nextDirection]);
             //someoneMovingController.direction = arrowedDirection[nextDirection];
             //nextDirection = 6;
-            someoneMovingController.direction = nextDirection;
-            someoneMovingController.root = lines[nextDirection][Random.Range(0, lines[nextDirection].Count)];
-            Debug.Log(someoneMovingController.root);
+            //someoneMovingController.turnDegree = Mathf.Abs(currentDirection % 4 - nextDirection % 4);
+            someoneMovingController.nextDirection = nextDirection;
+            BranchDirection(currentDirection, nextDirection);
             someoneMovingController.turnFlag = true;
         }
         
@@ -66,16 +66,17 @@ public class IntersectionController : MonoBehaviour
 
     //曲がるかどうか。曲がる場合、目当てのルートまで行き、曲がって終わり
     //曲がらない場合、突き当たりまでいって曲がり、目当てのルートに行き、曲がって終わり
-    private void CheckingTurn(int currentDirection, int nextDirection)
+    private void BranchDirection(int currentDirection, int nextDirection)
     {
-        float x, y = 0;
-        switch(Mathf.Abs(currentDirection % 4 - nextDirection % 4))
+        switch(currentDirection % 4)
         {
-            case 0:
+            case 0://直角
+                BranchTurnAtVertical(currentDirection, nextDirection);
                 break;
             case 1:
                 break;
-            case 2:
+            case 2://水平
+                BranchTurnAtHorizontal(currentDirection, nextDirection);
                 break;
             case 3:
                 break;
@@ -84,37 +85,68 @@ public class IntersectionController : MonoBehaviour
         }
     }
 
-    private void DecisionRoot(int nextDirection)
+    private void BranchTurnAtVertical(int currentDirection, int nextDirection)
     {
-        float x, y = 0;
-        switch (nextDirection)
+        switch (Mathf.Abs(currentDirection % 4 - nextDirection % 4))
         {
-            case 0:
+            case 0://N,S
+                someoneMovingController.rootY = position.y + (someoneMovingController.directionCo[nextDirection, 1] * (colliderSize.y / 2)) + (someoneMovingController.directionCo[nextDirection, 1] * 0.5f) - someoneMovingController.directionCo[nextDirection, 1];
+                someoneMovingController.rootX = lines[nextDirection][Random.Range(0, lines[nextDirection].Count)];
                 break;
             case 1:
                 break;
-            case 2:
+            case 2://E,W
+                someoneMovingController.rootY = lines[nextDirection][Random.Range(0, lines[nextDirection].Count)];
+                someoneMovingController.rootX = position.x + (someoneMovingController.directionCo[nextDirection, 0] * (colliderSize.x / 2)) + (someoneMovingController.directionCo[nextDirection, 0] * 0.5f) - someoneMovingController.directionCo[nextDirection, 0];
                 break;
             case 3:
-                break;
-            case 4:
-                //x = verticalLine[Random.Range(0, verticalLine.Count)];
-                y = position.y - colliderSize.y / 2 - 0.5f;
-                break;
-            case 5:
-                break;
-            case 6:
-                break;
-            case 7:
                 break;
             default:
                 break;
         }
-        
     }
-
+    /*
+    private void nextRoot(int currentDirection, int nextDirection)
+    {
+        switch (Mathf.Abs(currentDirection % 4 - nextDirection % 4))
+        {
+            case 0://直進
+                break;
+            case 1:
+                break;
+            case 2://直角に曲がる
+                break;
+            case 3:
+                break;
+            default:
+                break;
+        }
+    }
+    */
+    private void BranchTurnAtHorizontal(int currentDirection, int nextDirection)
+    {
+        switch (Mathf.Abs(currentDirection % 4 - nextDirection % 4))
+        {
+            case 0://N,S
+                someoneMovingController.rootY = lines[nextDirection][Random.Range(0, lines[nextDirection].Count)];
+                someoneMovingController.rootX = position.x + (someoneMovingController.directionCo[nextDirection, 0] * (colliderSize.x / 2)) + (someoneMovingController.directionCo[nextDirection, 0] * 0.5f) - someoneMovingController.directionCo[nextDirection, 0];
+                break;
+            case 1:
+                break;
+            case 2://E,W
+                someoneMovingController.rootY = position.y + (someoneMovingController.directionCo[nextDirection, 1] * (colliderSize.y / 2)) + (someoneMovingController.directionCo[nextDirection, 1] * 0.5f) - someoneMovingController.directionCo[nextDirection, 1];
+                someoneMovingController.rootX = lines[nextDirection][Random.Range(0, lines[nextDirection].Count)];
+                break;
+            case 3:
+                break;
+            default:
+                break;
+        }
+    }
+    /*
     private void OnTriggerExit2D(Collider2D collision)
     {
-        //someoneMovingController.turnFlag = false;
+        someoneMovingController.turnFlag = false;
     }
+    */
 }
