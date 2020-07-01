@@ -41,6 +41,9 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: AreaWall
+    uniqueID: 2407994027
+    locked: 0
   - name: Field
     uniqueID: 1208701423
     locked: 0
@@ -49,9 +52,6 @@ TagManager:
     locked: 0
   - name: Player
     uniqueID: 3463475611
-    locked: 0
-  - name: AreaWall
-    uniqueID: 2407994027
     locked: 0
   - name: UI
     uniqueID: 1135068113
