@@ -11,11 +11,11 @@ public class PlayerManager : MonoBehaviour
     SomeonePointer someonePointer;
     public GameObject player;
     public int HPValue = 100;
-    int cnt = 0;
+    public int cnt = 0;
     float dist = 0.0f;
     float timer;
     List<(float, float)> someoneDist = new List<(float, float)>();
-
+    /*
     public int distance(SomeonePointer someonePointer)
     {
         cnt = 0;
@@ -31,6 +31,7 @@ public class PlayerManager : MonoBehaviour
         }
         return cnt;
     }
+    */
 
     public void Damage()
     {

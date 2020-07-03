@@ -25,7 +25,8 @@ public class GameSystem : MonoBehaviour
     {
         
         HPValue = playerManager.HPValue;
-        aroundSomeone = playerManager.distance(someonePointer);
+        //aroundSomeone = playerManager.distance(someonePointer);
+        aroundSomeone = playerManager.cnt;
         playerUI.updateUI(HPValue , aroundSomeone);
         playerManager.Damage();
 
