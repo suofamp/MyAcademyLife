@@ -27,8 +27,8 @@ public class IntersectionController : MonoBehaviour
         boxCollider = GetComponent<BoxCollider2D>();
         position = this.transform.position;
         colliderSize = boxCollider.size;
-        Debug.Log(colliderSize.x + " " + colliderSize.y);
-        Debug.Log(position.x + " " + position.y);
+        //Debug.Log(colliderSize.x + " " + colliderSize.y);
+        //Debug.Log(position.x + " " + position.y);
         lines.Add(north);//0
         lines.Add(northEast);//1
         lines.Add(east);//2
@@ -44,7 +44,7 @@ public class IntersectionController : MonoBehaviour
         if(collision.gameObject.GetComponent<SomeoneMovingController>())
         {
             someoneMovingController = collision.gameObject.GetComponent<SomeoneMovingController>();
-            Debug.Log("in" + collision.name);
+            //Debug.Log("in" + collision.name);
             int nextDirection = 0;
             int currentDirection = 0;
             currentDirection = someoneMovingController.direction;
