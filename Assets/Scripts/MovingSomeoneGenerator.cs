@@ -6,13 +6,15 @@ public class MovingSomeoneGenerator : MonoBehaviour
 {
     public int roadWidth;
     public int direction;
-    public int maxGenerateCounts;
+    //public int maxGenerateCounts;
     public int generateProbability;
     public GameObject someonePrefab;
+    public List<int> maxGenerateProbability = new List<int>();
     //public MovingSomeoneGenerator movingSomeoneGenerator;
     private List<(float, float)> generatePosition = new List<(float, float)>();
+    private List<int> generateCount = new List<int>();
     private Vector2 position;
-    private int[] someoneCounts;
+    //private int[] someoneCounts;
     private int generateSwitch;
     SomeoneMovingController someoneMovingController;
     // Start is called before the first frame update
@@ -30,13 +32,22 @@ public class MovingSomeoneGenerator : MonoBehaviour
                 generatePosition.Add((position.x, position.y + i));
             }
         }
+
+        for(int i = 1;i <= maxGenerateProbability.Count; i++)
+        {
+            for(int j = 0;j < maxGenerateProbability[i - 1]; j++)
+            {
+                generateCount.Add(i);
+            }
+        }
+        Debug.Log(generateCount.Count);
         /*
         for(int i = 0;i < generatePosition.Count; i++)
         {
             Debug.Log(generatePosition[i]);
         }
         */
-        someoneCounts = new int[maxGenerateCounts];
+        //someoneCounts = new int[maxGenerateCounts];
         generateSwitch = 0;
     }
 
@@ -60,6 +71,20 @@ public class MovingSomeoneGenerator : MonoBehaviour
         List<(float, float)> generating = generatePosition;
         System.Random rng = new System.Random();
         int n = generating.Count;
+        int settingDirection = 0;
+        System.Random rnd = new System.Random();    // インスタンスを生成
+        int rand = rnd.Next(2);
+        int ranm = Random.Range(1, generateCount.Count);
+        Debug.Log(ranm);
+        if (direction == 0)
+        {
+            settingDirection = rand * 4;
+        }
+        else if (direction == 2)
+        {
+            settingDirection = 2 + (rand * 4);
+        }
+
         while (n > 1)
         {
             n--;
@@ -68,20 +93,11 @@ public class MovingSomeoneGenerator : MonoBehaviour
             generating[k] = generating[n];
             generating[n] = tmp;
         }
-        for(int i = 1;i <= maxGenerateCounts; i++)
+        for(int i = 0;i < generateCount[ranm]; i++)
         {
             GameObject tmpSomeone = Instantiate(someonePrefab, new Vector2(generating[i].Item1, generating[i].Item2), Quaternion.identity) as GameObject;
             someoneMovingController = tmpSomeone.GetComponent<SomeoneMovingController>();
-            System.Random rnd = new System.Random();    // インスタンスを生成
-            int rand = rnd.Next(2);
-            if (direction == 0)
-            {
-                someoneMovingController.direction = rand * 4;
-            }else if(direction == 2)
-            {
-                someoneMovingController.direction = 2 + (rand * 4);
-            }
-            //Debug.Log(rand);
+            someoneMovingController.direction = settingDirection;
         }
     }
 }
