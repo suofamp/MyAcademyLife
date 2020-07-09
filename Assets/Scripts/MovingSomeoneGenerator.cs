@@ -75,7 +75,7 @@ public class MovingSomeoneGenerator : MonoBehaviour
         System.Random rnd = new System.Random();    // インスタンスを生成
         int rand = rnd.Next(2);
         int ranm = Random.Range(1, generateCount.Count);
-        Debug.Log(ranm);
+        //Debug.Log(ranm);
         if (direction == 0)
         {
             settingDirection = rand * 4;
