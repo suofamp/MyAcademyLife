@@ -14,7 +14,7 @@ public class PlayerManager : MonoBehaviour
     public int cnt = 0;
     float dist = 0.0f;
     float timer;
-    List<(float, float)> someoneDist = new List<(float, float)>();
+    //List<(float, float)> someoneDist = new List<(float, float)>();
     /*
     public int distance(SomeonePointer someonePointer)
     {
