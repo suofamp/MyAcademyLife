@@ -8,10 +8,12 @@ using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
-    [SerializeField]
-    float SPEED = 3.0f;
+    public PlayerManager playerManager;
+    [SerializeField] float walk = 2.0f;
+    [SerializeField] float dash = 10.0f;
     private Rigidbody2D rigidBody;
     private Vector2 inputAxis;
+    private float speed;
     public bool canMove = false;
     void Start()
     {
@@ -25,10 +27,26 @@ public class PlayerController : MonoBehaviour
         // それぞれ+や-の値と入力の関連付けはInput Managerで設定されている
         if (canMove)
         {
+            if(Input.GetKey("left shift")){
+                speed = dash;
+            }
+            else
+            {
+                speed = walk;
+            }
             inputAxis.x = Input.GetAxis("Horizontal");
             inputAxis.y = Input.GetAxis("Vertical");
-            rigidBody.velocity = inputAxis.normalized * SPEED;
-            var currentPosi = this.transform.position.x;
+            rigidBody.velocity = inputAxis.normalized * speed;
+        }
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        //Debug.Log("hit");
+        if (collision.gameObject.GetComponent<SomeoneMovingController>())
+        {
+            //Debug.Log("hit...");
+            playerManager.HPValue -= 1000;
         }
     }
 }
