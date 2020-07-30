@@ -14,7 +14,7 @@ public class SomeoneGenerator : MonoBehaviour
         someoneGene = someonePointer.someonePoints;
         if (someoneGene != null)
         {
-            Debug.Log(someoneGene.Count);
+            //Debug.Log(someoneGene.Count);
             for (int i = 0; i < someoneGene.Count; i++)
             {
                 Instantiate(someonePrefab, new Vector2(someoneGene[i].Item1, someoneGene[i].Item2), Quaternion.identity);
