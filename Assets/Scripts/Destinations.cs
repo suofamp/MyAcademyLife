@@ -282,17 +282,22 @@ public class Destinations : MonoBehaviour
         List<int> route = new List<int>();
         route.Add(goal);
         int beforePoint = goal;
+        int n;
+        int rand;
         for(int i = 0;i < dist[goal] - 1;i++)
         {
             //Debug.Log(beforePoint);
-            for (int j = 0; j < connections[beforePoint].Count; j++)
+            n = connections[beforePoint].Count;
+            for (int j = 0; j < n; j++)
             {
-                if (dist[connections[beforePoint][j]] == dist[beforePoint] - 1)
+                rand = Random.Range(0, connections[beforePoint].Count);
+                if (dist[connections[beforePoint][rand]] == dist[beforePoint] - 1)
                 {
-                    beforePoint = connections[beforePoint][j];
+                    beforePoint = connections[beforePoint][rand];
                     route.Add(beforePoint);
                     break;
                 }
+                connections[beforePoint].RemoveAt(rand);
             }
         }
         route.Add(start);
