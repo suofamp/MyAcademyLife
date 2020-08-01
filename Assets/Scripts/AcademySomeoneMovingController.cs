@@ -26,10 +26,7 @@ public class AcademySomeoneMovingController : MonoBehaviour
         {
             if(currentPosi.y > wayPoints[currentWayPoint + 1].Item2)//下へ
             {
-                while(currentPosi.y > wayPoints[currentWayPoint + 1].Item2)
-                {
-
-                }
+                position.y -= 0.01f;
             }
         }
     }
