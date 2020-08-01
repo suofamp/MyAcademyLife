@@ -25,7 +25,7 @@ public class MovingSomeoneGenerator : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        generateSwitch = 9;
+        generateSwitch = 10;
         position = this.transform.position;
         playerPosition = player.transform.position;
         dist = Mathf.Sqrt(Mathf.Pow((playerPosition.x - position.x), 2) + Mathf.Pow((playerPosition.y - position.y), 2));
@@ -56,7 +56,7 @@ public class MovingSomeoneGenerator : MonoBehaviour
         }
         */
         //someoneCounts = new int[maxGenerateCounts];
-        generateSwitch = 0;
+        //generateSwitch = 0;
     }
 
     // Update is called once per frame
@@ -71,7 +71,7 @@ public class MovingSomeoneGenerator : MonoBehaviour
             {
                 generateSwitch++;
             }
-            if (generateSwitch > 10)
+            if (generateSwitch >= 10)
             {
                 //Debug.Log("spown");
                 Generating();

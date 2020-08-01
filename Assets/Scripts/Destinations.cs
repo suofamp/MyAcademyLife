@@ -4,9 +4,10 @@ using UnityEngine;
 
 public class Destinations : MonoBehaviour
 {
-    List<List<(float, float)>> wayPoints = new List<List<(float, float)>>();
-    List<List<int>> connections = new List<List<int>>();
-    List<List<List<(float, float)>>> destinations = new List<List<List<(float, float)>>>();
+    public List<List<(float, float)>> wayPoints = new List<List<(float, float)>>();//各中継点 中継点→座標
+    public List<List<int>> connections = new List<List<int>>();//各点の繋がり 各中継点→つながっている中継点
+    public List<List<List<(float, float)>>> destinations = new List<List<List<(float, float)>>>();//各目的地 建物→ドア→座標
+    public List<List<int>> buildings = new List<List<int>>();//各建物のドア 各建物→各ドア
     List<List<(float, float)>> buildingN = new List<List<(float, float)>>();
     List<List<(float, float)>> buildingS = new List<List<(float, float)>>();
     List<List<(float, float)>> buildingE = new List<List<(float, float)>>();
@@ -73,9 +74,42 @@ public class Destinations : MonoBehaviour
     List<int> connection25;
     List<int> connection26;
     List<int> connection27;
+    List<int> doorN;
+    List<int> doorS;
+    List<int> doorE;
+    List<int> doorL;
+    List<int> doorP;
+    List<int> doorO;
+    List<int> doorC;
+    List<int> doorRw;
+    List<int> doorRe;
+    List<int> doorRs;
 
     private void Start()
     {
+        //buildings setup
+        doorN = new List<int>() { 0, 1, 2 };
+        doorS = new List<int>() { 3, 4, 5 };
+        doorE = new List<int>() { 6, 7 };
+        doorL = new List<int>() { 8, 9, 10 };
+        doorP = new List<int>() { 11 };
+        doorO = new List<int>() { 12 };
+        doorC = new List<int>() { 13 };
+        doorRw = new List<int>() { 14, 15 };
+        doorRe = new List<int>() { 16, 17 };
+        doorRs = new List<int>() { 18, 19 };
+
+        buildings.Add(doorN);
+        buildings.Add(doorS);
+        buildings.Add(doorE);
+        buildings.Add(doorL);
+        buildings.Add(doorP);
+        buildings.Add(doorO);
+        buildings.Add(doorC);
+        buildings.Add(doorRw);
+        buildings.Add(doorRe);
+        buildings.Add(doorRs);
+        //Debug.Log(buildings.Count);
         //buildingN 0
         calcCoordinate(ref destination00, -16, 135, -13, 135);
         calcCoordinate(ref destination01, 2, 135, 5, 135);
@@ -241,7 +275,7 @@ public class Destinations : MonoBehaviour
             Debug.Log(destination04[i]);
         }
         */
-
+        /*
         //test startを0,buildingN(0)とする goalを" 19 buildingRs(9) "とする
         int start = 0;
         int goal = 19;
@@ -306,6 +340,7 @@ public class Destinations : MonoBehaviour
         {
             Debug.Log(route[i]);
         }
+        */
     }
 
     private void calcCoordinate(ref List<(float, float)> addList, float xS, float yS, float xG, float yG)
