@@ -22,6 +22,12 @@ public class SomeonePointer : MonoBehaviour
 
                 };
                 break;
+            case "Academy":
+                someonePoints = new List<(float, float)>()
+                {
+
+                };
+                break;
             default:
                 someonePoints = new List<(float, float)>()
         {

@@ -8,6 +8,7 @@ public class Destinations : MonoBehaviour
     public List<List<int>> connections = new List<List<int>>();//各点の繋がり 各中継点→つながっている中継点
     public List<List<List<(float, float)>>> destinations = new List<List<List<(float, float)>>>();//各目的地 建物→ドア→座標
     public List<List<int>> buildings = new List<List<int>>();//各建物のドア 各建物→各ドア
+    public List<int> destroy;//0:上, 1:右, 2:下, 3:左
     List<List<(float, float)>> buildingN = new List<List<(float, float)>>();
     List<List<(float, float)>> buildingS = new List<List<(float, float)>>();
     List<List<(float, float)>> buildingE = new List<List<(float, float)>>();
@@ -110,72 +111,95 @@ public class Destinations : MonoBehaviour
         buildings.Add(doorRe);
         buildings.Add(doorRs);
         //Debug.Log(buildings.Count);
+
+        //destroy points
+        destroy.Add(0);//N
+        destroy.Add(0);
+        destroy.Add(0);
+        destroy.Add(2);//S
+        destroy.Add(3);
+        destroy.Add(3);
+        destroy.Add(1);//E
+        destroy.Add(1);
+        destroy.Add(2);//L
+        destroy.Add(3);
+        destroy.Add(3);
+        destroy.Add(1);//P
+        destroy.Add(1);//O
+        destroy.Add(3);//C
+        destroy.Add(3);//Rw
+        destroy.Add(3);
+        destroy.Add(1);//Re
+        destroy.Add(1);
+        destroy.Add(2);//Rs
+        destroy.Add(2);
+
         //buildingN 0
-        calcCoordinate(ref destination00, -16, 135, -13, 135);
-        calcCoordinate(ref destination01, 2, 135, 5, 135);
-        calcCoordinate(ref destination02, 20, 135, 23, 135);
+        calcCoordinate(ref destination00, -16, 126, -13, 126);
+        calcCoordinate(ref destination01, 2, 131, 5, 131);
+        calcCoordinate(ref destination02, 20, 126, 23, 126);
         buildingN.Add(destination00);
         buildingN.Add(destination01);
         buildingN.Add(destination02);
         destinations.Add(buildingN);
 
         //buindingS 1
-        calcCoordinate(ref destination03, -16, 108, -13, 108);
-        calcCoordinate(ref destination04, -5, 100, -5, 103);
-        calcCoordinate(ref destination05, -16, 70, -13, 73);
+        calcCoordinate(ref destination03, -16, 115, -13, 115);
+        calcCoordinate(ref destination04, -2, 100, -2, 103);
+        calcCoordinate(ref destination05, -2, 70, -2, 73);
         buildingS.Add(destination03);
         buildingS.Add(destination04);
         buildingS.Add(destination05);
         destinations.Add(buildingS);
 
         //buildingE 2
-        calcCoordinate(ref destination06, 12, 100, 12, 103);
-        calcCoordinate(ref destination07, 12, 70, 12, 73);
+        calcCoordinate(ref destination06, 9, 100, 9, 103);
+        calcCoordinate(ref destination07, 9, 70, 9, 73);
         buildingE.Add(destination06);
         buildingE.Add(destination07);
         destinations.Add(buildingE);
 
         //buildingL 3
-        calcCoordinate(ref destination08, -12, 47, -11, 47);
-        calcCoordinate(ref destination09, -5, 40, -5, 41);
-        calcCoordinate(ref destination10, -5, 22, -5, 23);
+        calcCoordinate(ref destination08, -12, 50, -11, 50);
+        calcCoordinate(ref destination09, -2, 40, -2, 41);
+        calcCoordinate(ref destination10, -2, 22, -2, 23);
         buildingL.Add(destination08);
         buildingL.Add(destination09);
         buildingL.Add(destination10);
         destinations.Add(buildingL);
 
         //buildingP 4
-        calcCoordinate(ref destination11, 12, 39, 12, 42);
+        calcCoordinate(ref destination11, 9, 39, 9, 42);
         buildingP.Add(destination11);
         destinations.Add(buildingP);
 
         //buildingO 5
-        calcCoordinate(ref destination12, 12, 22, 12, 23);
+        calcCoordinate(ref destination12, 9, 22, 9, 23);
         buildingO.Add(destination11);
         destinations.Add(buildingO);
 
         //buildingC 6
-        calcCoordinate(ref destination13, -5, 10, -5, 11);
+        calcCoordinate(ref destination13, -2, 10, -2, 11);
         buildingC.Add(destination13);
         destinations.Add(buildingC);
 
         //buildingRw 7
-        calcCoordinate(ref destination14, -25, 59, -25, 61);
-        calcCoordinate(ref destination15, -25, 50, -25, 52);
+        calcCoordinate(ref destination14, -22, 59, -22, 61);
+        calcCoordinate(ref destination15, -22, 50, -22, 52);
         buildingRw.Add(destination14);
         buildingRw.Add(destination15);
         destinations.Add(buildingRw);
 
         //buildingRe 8
-        calcCoordinate(ref destination16, 27, 59, 27, 61);
-        calcCoordinate(ref destination17, 27, 50, 27, 52);
+        calcCoordinate(ref destination16, 24, 59, 24, 61);
+        calcCoordinate(ref destination17, 24, 50, 24, 52);
         buildingRe.Add(destination16);
         buildingRe.Add(destination17);
         destinations.Add(buildingRe);
 
         //buildingRs 9
-        calcCoordinate(ref destination18, -2, 0, 0, 0);
-        calcCoordinate(ref destination19, 7, 0, 9, 0);
+        calcCoordinate(ref destination18, -2, 4, 0, 4);
+        calcCoordinate(ref destination19, 7, 4, 9, 4);
         buildingRs.Add(destination18);
         buildingRs.Add(destination19);
         destinations.Add(buildingRs);
