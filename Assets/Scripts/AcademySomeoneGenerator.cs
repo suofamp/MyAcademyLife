@@ -10,11 +10,14 @@ public class AcademySomeoneGenerator : MonoBehaviour
     public int direction;
     public int start;
     public int building;
+    public int probability;
+    public int gene;
     private Vector2 position;
     private int generateSwitch;
     private List<(float, float)> generatePosition = new List<(float, float)>();
     private AcademySomeoneMovingController academySomeoneMovingController;
     private int goal;
+    private int spown;
 
     private int testCnt;
     // Start is called before the first frame update
@@ -34,16 +37,22 @@ public class AcademySomeoneGenerator : MonoBehaviour
         }
         //Generating();
         testCnt = 0;
+        spown = 0;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(testCnt == 0)
+        int gr = Random.Range(0, 100);
+        if (gr < probability)
+        {
+            spown++;
+        }
+        if(spown >= gene)
         {
             Generating();
+            spown = 0;
         }
-        testCnt++;
     }
 
     private void Generating()
@@ -100,16 +109,17 @@ public class AcademySomeoneGenerator : MonoBehaviour
             n = destinations.connections[beforePoint].Count;
             for (int j = 0; j < n; j++)
             {
-                rand = Random.Range(0, destinations.connections[beforePoint].Count);
-                if (dist[destinations.connections[beforePoint][rand]] == dist[beforePoint] - 1)
+                //rand = Random.Range(0, destinations.connections[beforePoint].Count);
+                if (dist[destinations.connections[beforePoint][j]] == dist[beforePoint] - 1)
                 {
-                    beforePoint = destinations.connections[beforePoint][rand];
+                    beforePoint = destinations.connections[beforePoint][j];
                     route.Add(beforePoint);
                     break;
                 }
-                destinations.connections[beforePoint].RemoveAt(rand);
+                //destinations.connections[beforePoint].RemoveAt(rand);
             }
         }
+        route.Add(start);
         route.Reverse();
         for (int i = 0; i < route.Count; i++)
         {
@@ -123,6 +133,8 @@ public class AcademySomeoneGenerator : MonoBehaviour
         {
             int dr = Random.Range(0, destinations.wayPoints[route[i]].Count);
             academySomeoneMovingController.wayPoints.Add(destinations.wayPoints[route[i]][dr]);
+            academySomeoneMovingController.destroy = destinations.destroy[goal];
+            academySomeoneMovingController.test.Add(route[i]);
         }
 
         /*
